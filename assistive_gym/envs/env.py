@@ -344,6 +344,13 @@ class AssistiveEnv(gym.Env):
         self.camera_height = camera_height
         self.view_matrix = p.computeViewMatrix(camera_eye, camera_target, [0, 0, 1], physicsClientId=self.id)
         self.projection_matrix = p.computeProjectionMatrixFOV(fov, camera_width / camera_height, 0.01, farfield, physicsClientId=self.id)
+        
+    def setup_capsensor(self, camera_eye=[0.5, -0.75, 1.5], camera_target=[-0.2, 0, 0.75], fov=60):
+        self.camera_width = 64
+        self.camera_height = 64
+        farfield = 0.5
+        self.view_matrix = p.computeViewMatrix(camera_eye, camera_target, [0, 0, 1], physicsClientId=self.id)
+        self.projection_matrix = p.computeProjectionMatrixFOV(fov, camera_width / camera_height, 0.01, farfield, physicsClientId=self.id)
 
     def setup_camera_rpy(self, camera_target=[-0.2, 0, 0.75], distance=1.5, rpy=[0, -35, 40], fov=60, camera_width=1920//4, camera_height=1080//4):
         self.camera_width = camera_width
